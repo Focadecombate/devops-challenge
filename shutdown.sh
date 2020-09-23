@@ -1,26 +1,25 @@
 #!/bin/bash
 
-#Define cleanup procedure
-cleanup() {
-    cat "./database.json"
+#Processo de desligamento
+backup() {
+    echo "Container foi desligado, performando backup..."
     mv "./database.json" "./data/"
-    echo "Container stopped, performing cleanup..."
+    cat "./data/database.json"
 }
 
 #Trap SIGTERM
 trap 'true' SIGTERM SIGKILL
 
-number=""number""
-
-#Execute command
+#Executa comando como Por exemplo o nodejs ou python.
 while true; do
     :
     echo "{\"number\": $((1 + RANDOM % 100))}" >> database.json
-    sleep 30
+    cat database.json
+    sleep 60
 done &
 
 #Wait
 wait $!
 
-#Cleanup
-cleanup
+#Backup
+backup
