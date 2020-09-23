@@ -1,0 +1,10 @@
+version: "3"
+services:
+  desafio:
+    image: focadecombate/qrpoint:latest
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: qrpoint
+    volumes:
+      - ./data:/data
